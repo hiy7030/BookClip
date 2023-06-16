@@ -22,14 +22,12 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable() // csrf 공격 방지 기능 비활성화
                 .cors(withDefaults()) // 기본 cors 설정 사용
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// 세션 사용 설정
                 .and()
-                .formLogin().disable()
-                .httpBasic().disable()
-                .logout().disable()
-                .exceptionHandling()
-                .and()
-                .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated());
+                .formLogin().disable() // 폼 로그인 비활성화
+                .httpBasic().disable() //
+                .logout().disable(); // 로그아웃 비활성화
+        
 
         return http.build();
     }
