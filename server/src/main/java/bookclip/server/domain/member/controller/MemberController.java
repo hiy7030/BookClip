@@ -17,15 +17,14 @@ import javax.validation.constraints.Positive;
 @RequiredArgsConstructor
 @Validated
 public class MemberController {
-    private MemberMapper mapper;
-    private MemberService memberService;
+    private final MemberMapper mapper;
+    private final MemberService memberService;
 
     // 회원 생성
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post memberPostDto) {
-        Member member = mapper.memberPostDtoToMember(memberPostDto);
 
-        memberService.createMember(member);
+        memberService.createMember(mapper.memberPostDtoToMember(memberPostDto));
 
         return new ResponseEntity(HttpStatus.CREATED);
     }

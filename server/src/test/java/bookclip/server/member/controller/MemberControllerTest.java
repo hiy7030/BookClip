@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,7 +52,6 @@ public class MemberControllerTest {
         Member expected = MemberFactory.createMember();
         String content = gson.toJson(postMember);
 
-        given(mapper.memberPostDtoToMember(Mockito.any(MemberDto.Post.class))).willReturn(expected);
         given(memberService.createMember(Mockito.any(Member.class))).willReturn(expected);
         // when
         ResultActions actions = mockMvc.perform(post("/signup")
@@ -59,5 +60,19 @@ public class MemberControllerTest {
                 .content(content));
         // then
         actions.andExpect(status().isCreated());
+    }
+
+    @Test
+    @DisplayName("회원 탈퇴 테스트")
+    void deleteMemberTest() throws Exception {
+        //given
+        Member expected = MemberFactory.createMember();
+
+        doNothing().when(memberService).deleteMember(expected.getMemberId());
+        //when
+        ResultActions actions = mockMvc.perform(delete("/members/{member-id}", expected.getMemberId())
+                .accept(MediaType.APPLICATION_JSON));
+        //then
+        actions.andExpect(status().isNoContent());
     }
 }

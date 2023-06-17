@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LogAop {
     // 적용할 곳
-    @Pointcut("execution(* bookclip.server.domain.*.*(..))")
+    @Pointcut("execution(* bookclip.server.domain..*.*(..))")
     private void cut() {}
 
     @Before("cut()")

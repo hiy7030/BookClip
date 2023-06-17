@@ -1,9 +1,7 @@
 package bookclip.server.domain.member.entity;
 
 import bookclip.server.global.audit.Auditable;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,7 +11,7 @@ import javax.persistence.*;
 public class Member extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long MemberId;
+    private Long memberId;
 
     @Column(nullable = false, unique = true, updatable = false)
     private String email;
@@ -24,7 +22,7 @@ public class Member extends Auditable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @Setter
-    private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
+    private MemberStatus memberStatus;
 
     public enum MemberStatus {
         MEMBER_ACTIVE("활동중"),

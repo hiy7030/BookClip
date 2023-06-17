@@ -14,6 +14,7 @@ public class MemberFactory {
     }
     public static Member createMember() {
         Member member = Member.builder()
+                .memberId(1L)
                 .email("test@gmail.com")
                 .password("12345678")
                 .build();

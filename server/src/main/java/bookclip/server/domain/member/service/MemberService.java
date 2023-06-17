@@ -12,11 +12,12 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
     // 회원 생성
     public Member createMember(Member member) {
         // 존재하는 회원인지 확인 -> 이메일 중복 검사
         verifyExistEmail(member.getEmail());
+        member.setMemberStatus(Member.MemberStatus.MEMBER_ACTIVE);
 
         return memberRepository.save(member);
     }
