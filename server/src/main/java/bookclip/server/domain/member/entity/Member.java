@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Entity
 @Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

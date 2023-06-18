@@ -22,13 +22,4 @@ public class MemberFactory {
 
         return member;
     }
-
-    public static Member saveMember() {
-        Member member = Member.builder()
-                .email("test@gmail.com")
-                .password("12345678")
-                .build();
-
-        return member;
-    }
 }

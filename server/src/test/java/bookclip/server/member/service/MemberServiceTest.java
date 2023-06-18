@@ -62,7 +62,7 @@ public class MemberServiceTest {
     @DisplayName("회원 생성 테스트")
     void createMember() {
         //given
-        Member member = MemberFactory.saveMember();
+        Member member = MemberFactory.createMember();
 
         when(memberRepository.save(member)).thenReturn(member);
         //when
