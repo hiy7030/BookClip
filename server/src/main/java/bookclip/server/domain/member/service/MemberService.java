@@ -30,14 +30,14 @@ public class MemberService {
     }
 
     // 이메일로 회원 중복 확인
-    private void verifyExistEmail(String email) {
+    public void verifyExistEmail(String email) {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if(optionalMember.isPresent()) {
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
         }
     }
     // 회원 찾기
-    private Member findMember(long memberId) {
+    public Member findMember(long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
         return optionalMember.orElseThrow(

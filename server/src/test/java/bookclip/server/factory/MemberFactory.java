@@ -17,6 +17,16 @@ public class MemberFactory {
                 .memberId(1L)
                 .email("test@gmail.com")
                 .password("12345678")
+                .memberStatus(Member.MemberStatus.MEMBER_ACTIVE)
+                .build();
+
+        return member;
+    }
+
+    public static Member saveMember() {
+        Member member = Member.builder()
+                .email("test@gmail.com")
+                .password("12345678")
                 .build();
 
         return member;
