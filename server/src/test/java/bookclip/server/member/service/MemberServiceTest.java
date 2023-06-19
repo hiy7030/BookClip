@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -30,6 +31,8 @@ public class MemberServiceTest {
     @InjectMocks
     private MemberService memberService;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @BeforeEach
     void delete() {
         memberRepository.deleteAll();
@@ -69,7 +72,9 @@ public class MemberServiceTest {
         Member createMember = memberService.createMember(member);
         //then
         verify(memberRepository).save(member);
-        assertSame(member, createMember);
+        assertSame(member.getMemberId(), createMember.getMemberId());
+        assertSame(member.getEmail(), createMember.getEmail());
+        assertSame(member.getMemberStatus(), createMember.getMemberStatus());
     }
 
     @Test
